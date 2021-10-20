@@ -1,12 +1,11 @@
 import { useEffect } from "react"
 import {useLocation } from 'react-router-dom'
 import ReactPlayer from "react-player"
-
 import Loading from "./Loading"
-
 import {useResultsContext} from "../contexts/ResultContextProvider"
 import NoResults from "./NoResults"
 import Error from "./Error"
+
 const Results = () => {
     const {results, isLoading, getResults, searchTerm}  = useResultsContext()
     const location = useLocation();
