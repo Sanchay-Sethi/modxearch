@@ -11,10 +11,12 @@ const Home = ({darkTheme}) => {
    
   const {setSearchTerm, results, getResults, searchTerm} = useResultsContext();
   const [text, setText] = useState(searchTerm)
-  const [debouncedValue] = useDebounce(text, 300)
+  const [debouncedValue] = useDebounce(text, 200)
 
     useEffect(()=>{
       if(debouncedValue) setSearchTerm(debouncedValue)
+      else setSearchTerm('')
+
       if(searchTerm!==''){ 
           getResults(`/search/q=${searchTerm}&num=5`)
       }
@@ -49,7 +51,7 @@ const Home = ({darkTheme}) => {
         setSearchTerm(text);
     }
     return (
-        <div className="Homediv" style = {{position: "relative", display : "flex", justifyContent : "center", alignItems: "center", flexDirection: "column", width: "100%"}}>
+        <div className="Homediv" style = {{position: "relative", display : "flex", justifyContent : "center", alignItems: "center", flexDirection: "column", width: "100%", height: "80vh"}}>
             <div className="sm:text-2xl" style = {{display : "flex", justifyContent : "center", alignItems: "center"}}>
                 <h1 className="font-bold text-6xl sm:text-9xl">M</h1>
                 <Lottie options={!darkTheme ? defaultOptions3 : defaultOptions} height= {100} width = {100} />
@@ -67,14 +69,14 @@ const Home = ({darkTheme}) => {
             />
             
             {text && (
-                <button type="button" className="absolute top-0 right-2 text-2xl text-gray-500" onClick={()=>setText('')}>
+                <button type="button" className="absolute top-0 right-2 text-2xl text-gray-500" onClick={()=>{setText(''); setSearchTerm('');}}>
                         <Lottie options={defaultOptions2} height= {50} width = {50}/>
                 </button>
             )}
             </div>
             {
               searchTerm !=='' ? <div className = "w-100 bg-white dark:bg-gray-900 rounded-xl border-2 border-t-0">
-                 {results?.map(({link, title}, index)=>{
+                 {results.slice(0, 5)?.map(({link, title}, index)=>{
                         return <div key = {index} className="w-full border-b-2 rounded-lg p-2">
                             <a href = {link} target = "_blank" rel = "noreferrer" >
                                 <p className="text-sm hover:underline dark:text-blue-500 text-blue-900">
