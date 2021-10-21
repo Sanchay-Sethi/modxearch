@@ -51,7 +51,7 @@ const Home = ({darkTheme}) => {
         setSearchTerm(text);
     }
     return (
-        <div className="Homediv" style = {{position: "relative", display : "flex", justifyContent : "center", alignItems: "center", flexDirection: "column", width: "100%", height: "80vh"}}>
+        <div className="Homediv" style = {{position: "relative", display : "flex", justifyContent : "center", alignItems: "center", flexDirection: "column", width: "100%", marginBottom : "100px"}}>
             <div className="sm:text-2xl" style = {{display : "flex", justifyContent : "center", alignItems: "center"}}>
                 <h1 className="font-bold text-6xl sm:text-9xl">M</h1>
                 <Lottie options={!darkTheme ? defaultOptions3 : defaultOptions} height= {100} width = {100} />
